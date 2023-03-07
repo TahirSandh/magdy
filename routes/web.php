@@ -118,14 +118,23 @@ use App\Http\Controllers\Travelar\DashboardController as Travelar_dashboard;
            Route::group(['middleware' => ['travaler_redirection']], function(){
                 Route::get('/travelar/dashboard', [Travelar_dashboard::class, 'index'])->name('travelar-dashboard');
                 Route::get('/travelar/edit-profile',[ProfileController::class,"edit_profile"])->name("travelar-profile-edit");
-                Route::get('/travelar/edit-address',[ProfileController::class,"dasboard_edit_address"])->name("travelar-profile-address");
-                Route::get('/travelar/cards',[ProfileController::class,"parment_cards"])->name("travelar-cards");
+                Route::get('/travelar/edit-address',[ProfileController::class,"dasboard_edit_address_trv"])->name("travelar-profile-address");
+                Route::get('/travelar/cards',[Travelar_dashboard::class,"parment_cards"])->name("travelar-cards");
                 Route::get('/travelar/delete_card/{id}',[ProfileController::class,"delete_card"])->name("delete_card");
                 Route::get('/travelar/checkout/{country_from}/{country_to}', [CheckoutController::class, 'index']);
                  Route::POST('/shop-from',[ShopFromController::class,"index"])->name("shopfrom");
-                Route::get('/travelar/order/request',[Travelar_dashboard::class,"order_request"])->name("travelar-request");
+                Route::get('/shopper/approved',[Travelar_dashboard::class,"shopper_approved"])->name("shopper-request-approved");
+                Route::get('/shopper/view/{id}',[Travelar_dashboard::class,"shopper_view"])->name("shopper-view");
+                Route::post('/approved',[Travelar_dashboard::class,"approved"])->name("approved");
+              
+
                 Route::get('/travelar/delete_order/{id}',[ProfileController::class,"delete_order"])->name("delete_order");
                 Route::get('/travelar/change-password',[Travelar_dashboard::class,"change_password"])->name("travelar-change-password");
+                Route::get('/travelar/document',[Travelar_dashboard::class,"travelar_document"])->name("travelar-document");
+                Route::post('/travelar/document/store',[ProfileController::class,"travel_file_upload"])->name("travelar-document-store");        
+                Route::get('/travelar/delete_gallery/{id}',[ProfileController::class,"delete_gallery"])->name("delete-gallery");
+                Route::get('/travelar/file/{file}',[ProfileController::class,"download"])->name("download");
+       
             });
 
 
