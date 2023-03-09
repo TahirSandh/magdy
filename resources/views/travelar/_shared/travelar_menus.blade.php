@@ -12,14 +12,15 @@
             <a href="{{ route("travelar-profile-address") }}" class="pt-0">
                 <li><i class="bi bi-house-fill"></i><span>Address</span></li>
             </a>
-            <a href="{{ route("travelar-cards") }}" class="pt-0">
-                <li><i class="bi bi-credit-card"></i><span>Credit Card</span></li>
+            <a href="{{ route("travelar-document") }}" class="pt-0">
+                <li><i class="bi bi-credit-card"></i><span>Document</span></li>
             </a>
-            <a href="{{ route("travelar-request") }}" class="pt-0">
-                <li><i class="bi bi-paypal"></i><span>Requests</span></li>
-            </a>
+           
             <a href="{{ route("travelar-change-password") }}" class="pt-0">
                 <li><i class="bi bi-lock-fill"></i><span>Change Password</span></li>
+            </a>
+            <a href="{{ route("shopper-request-approved") }}" class="pt-0">
+                <li><i class="bi bi-paypal"></i><span>Shopper</span></li>
             </a>
             <!-- <a href="" class="pt-0">
                 <li><i class="bi bi-trash3-fill"></i><span>Delete Account</span></li>

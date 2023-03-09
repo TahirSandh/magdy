@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Shopper;
+namespace App\Http\Controllers\Travelar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

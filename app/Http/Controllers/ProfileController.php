@@ -73,6 +73,12 @@ class ProfileController extends Controller
         $data["addresses"] = Auth::user()->user_address()->get();
         return view("shopper.profile.edit_profie_address",$data);
     }
+
+    public function dasboard_edit_address_trv()
+    {
+        $data["addresses"] = Auth::user()->user_address()->get();
+        return view("travelar.profile.edit_profie_address",$data);
+    }
     public function add_address(Request $request)
     {
       $this->validate($request, [
@@ -123,15 +129,39 @@ class ProfileController extends Controller
     }
     public function file_upload(Request $request)
     {
-        $image = $request->file('file');
-        $imageName = $image->getClientOriginalName();
-        $image->move(public_path('images'),$imageName);
-        $imageUpload = new Gallery();
-        $imageUpload->user_id = Auth::user()->id;
-        $imageUpload->filename = $imageName;
-        $imageUpload->save();
+      
+            $image = $request->file('file');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('images'),$imageName);
+        
+            $imageUpload = new Gallery();
+            $imageUpload->user_id = Auth::user()->id;
+            $imageUpload->filename = $imageName;
+            $imageUpload->save();
+
+            $galleries = Gallery::get();
+                
+           
+
         return response()->json(['success'=>$imageName]);
     }
+
+    public function travel_file_upload(Request $request)
+    {
+   
+            $image = $request->file('file');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('images'),$imageName);
+        
+            $imageUpload = new Gallery();
+            $imageUpload->user_id = Auth::user()->id;
+            $imageUpload->original_filename = $image;
+            $imageUpload->filename = $imageName;
+            $imageUpload->save();
+
+            return redirect()->back()->with(["success" => true , "message" => "Profile updated Successfully"]);
+    }
+
     public function file_delete(Request $request)
     {
         $filename =  $request->get('filename');
@@ -164,6 +194,22 @@ class ProfileController extends Controller
            }
     }
 
+
+    public function delete_gallery($id)
+    {
+        try{
+            Gallery::where("id",$id)->delete();
+            return redirect()->back()->with(["success" => true , "message" => "Gallery Deleted..." ]);
+           }
+           catch(\Exception $exception)
+           { 
+            return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+           }
+    }
+
+    public function download($file){
+        return response()->download(storage_path('/storage/app/files/'.$file));
+     }
     
     public function delete_address($id)
     {

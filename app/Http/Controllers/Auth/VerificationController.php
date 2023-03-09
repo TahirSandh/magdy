@@ -63,7 +63,7 @@ class VerificationController extends Controller
     }
     public function verify_otp(request $request)
     {
-     
+        
         $this->validate($request, [
             'otp' => 'required',
         ]);
