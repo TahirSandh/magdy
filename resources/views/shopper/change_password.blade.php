@@ -1,4 +1,4 @@
-@extends('layouts.app_Front')
+@extends('layouts.app_front')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset("css/profile_form.css") }}">
